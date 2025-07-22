@@ -1,0 +1,43 @@
+import tkinter as tk
+from tkinter import messagebox
+def fenetre_secondaire():
+    name = entries['Nom'].get().strip()
+    prenom = entries['Prénom'].get().strip()
+    mail = entries['Email'].get().strip()
+    if not name or not prenom or not mail:
+        messagebox.showerror('Erreur', 'Veuillez remplir tous les champs')
+        return
+    
+    if not (name.isalpha() or  prenom.isalpha()):
+        messagebox.showerror("Erreur", "Veuillez entrer un nom et un prénom correctement")
+        return
+    if not mail.endswith('@gmail.com'):
+        messagebox.showerror(" Erreur", "L'addresse mail se termine par @gmail.com")
+        return
+# fenetre secondaire
+    fenetre_secondaire = tk.Toplevel()
+    fenetre_secondaire.title('Infos personelles')
+    fenetre_secondaire.geometry("500x300")
+    datas = ['Age', 'Ville', 'Activité personelle']
+    entrie = {}
+    for k, thing in enumerate(datas):
+        tk.Label(fenetre_secondaire, text= thing).grid(row=k, column=0, padx=10, pady=10, sticky="e")
+        entree = tk.Entry(fenetre)
+        entree.grid(row=k, column=0, padx=10, pady=10)
+        entrie[datas] = entree
+        
+entries = {}
+fenetre = tk.Tk()
+fenetre.title("Data entry")
+fenetre.geometry("400x200")
+
+data = ['Nom' ,'Prénom' ,'Email']
+for i, element in enumerate (data):
+    tk.Label(fenetre, text= element).grid(row=i, column=0, padx=10, pady=10, sticky="e") 
+    entry = tk.Entry(fenetre)
+    entry.grid(row=i, column=1,padx=10,pady=10)
+    entries[element] = entry 
+tk.Button(fenetre, text='Continuer', command= fenetre_secondaire).grid(row=3, column=2)
+
+
+fenetre.mainloop()
