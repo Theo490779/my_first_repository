@@ -25,7 +25,7 @@ def fenetre_secondaire():
         entree = tk.Entry(fenetre)
         entree.grid(row=k, column=0, padx=10, pady=10)
         entrie[datas] = entree
-        
+
 entries = {}
 fenetre = tk.Tk()
 fenetre.title("Data entry")
